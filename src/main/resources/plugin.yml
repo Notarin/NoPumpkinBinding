@@ -1,0 +1,10 @@
+name: NoPumpkinBinding
+version: '${project.version}'
+main: me.notarin.nopumpkinbinding.NoPumpkinBinding
+api-version: 1.19
+authors: [ Notarin ]
+description: This plugin removes curse of binding from pumpkins placed on players heads.
+commands:
+  getthispumpkinoffme:
+    description: Destroy the pumpkin on your head.
+    aliases: [gtpom]
