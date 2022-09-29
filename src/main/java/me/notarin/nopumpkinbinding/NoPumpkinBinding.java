@@ -38,6 +38,7 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
             event.setResult(new ItemStack(Material.AIR));
         }
     }
+    @SuppressWarnings("NullableProblems")
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("getthispumpkinoffme")) {
@@ -45,6 +46,7 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
                 Player p = (Player) sender;
                 try {
                     ItemStack i = p.getInventory().getHelmet();
+                    assert i != null;
                     if (i.getType().name().contains("CARVED_PUMPKIN") && i.containsEnchantment(Enchantment.BINDING_CURSE)) {
                         System.out.println("Removing curse of binding.");
                         i.removeEnchantment(Enchantment.BINDING_CURSE);
