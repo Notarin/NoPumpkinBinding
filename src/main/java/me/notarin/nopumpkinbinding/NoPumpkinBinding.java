@@ -1,5 +1,6 @@
 package me.notarin.nopumpkinbinding;
 
+import com.tchristofferson.configupdater.ConfigUpdater;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -14,6 +15,8 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import java.io.File;
+import java.io.IOException;
 
 public final class NoPumpkinBinding extends JavaPlugin implements Listener {
 
@@ -21,11 +24,24 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        this.saveDefaultConfig();
+        saveDefaultConfig();
+        //The config needs to exist before using the updater
+        File configFile = new File(getDataFolder(), "config.yml");
+
+        try {
+            ConfigUpdater.update(this, "config.yml", configFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reloadConfig();
         getServer().getPluginManager().registerEvents(this, this);
         if (config.getBoolean("startup-message")) {
             System.out.println("NoPumpkinBinding Started!");
         }
+    }
+    public void onDisable() {
+        saveDefaultConfig();
     }
     @EventHandler
     public void pumpkin_enchant(PrepareAnvilEvent event) {
