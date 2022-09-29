@@ -28,15 +28,14 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
     @EventHandler
     public void pumpkinenchant(PrepareAnvilEvent event) {
         AnvilInventory c = event.getInventory();
-        try {
-            ItemStack BaseItem = c.getItem(0);
-            ItemStack Result = c.getItem(3);
-            boolean Check2 = Result.containsEnchantment(Enchantment.BINDING_CURSE);
-            if (BaseItem.getType() == Material.CARVED_PUMPKIN && Check2) {
-                System.out.println("Blocked pumpkin enchantment.");
-                event.setResult(new ItemStack(Material.AIR));
-            }
-        } catch (Exception e) {
+        ItemStack BaseItem = c.getItem(0);
+        ItemStack Result = c.getItem(3);
+        assert BaseItem != null;
+        assert Result != null;
+        boolean Check2 = Result.containsEnchantment(Enchantment.BINDING_CURSE);
+        if (BaseItem.getType() == Material.CARVED_PUMPKIN && Check2) {
+            System.out.println("Blocked pumpkin enchantment.");
+            event.setResult(new ItemStack(Material.AIR));
         }
     }
     @Override
