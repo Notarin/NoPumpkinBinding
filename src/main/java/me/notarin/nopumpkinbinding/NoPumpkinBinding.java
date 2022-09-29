@@ -16,10 +16,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class NoPumpkinBinding extends JavaPlugin implements Listener {
 
+    FileConfiguration config = this.getConfig();
+
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
-        FileConfiguration config = this.getConfig();
         getServer().getPluginManager().registerEvents(this, this);
         if (config.getBoolean("startup-message")) {
             System.out.println("NoPumpkinBinding Started!");
