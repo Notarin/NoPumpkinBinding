@@ -26,7 +26,7 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
         }
     }
     @EventHandler
-    public void pumpkinenchant(PrepareAnvilEvent event) {
+    public void pumpkin_enchant(PrepareAnvilEvent event) {
         AnvilInventory c = event.getInventory();
         ItemStack BaseItem = c.getItem(0);
         ItemStack Result = c.getItem(3);
