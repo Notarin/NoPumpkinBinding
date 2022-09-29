@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,8 +18,12 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        System.out.println("NoPumpkinBinding Started!");
+        this.saveDefaultConfig();
+        FileConfiguration config = this.getConfig();
         getServer().getPluginManager().registerEvents(this, this);
+        if (config.getBoolean("startup-message")) {
+            System.out.println("NoPumpkinBinding Started!");
+        }
     }
     @EventHandler
     public void pumpkinenchant(PrepareAnvilEvent event) {
@@ -26,7 +31,7 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
         try {
             ItemStack BaseItem = c.getItem(0);
             ItemStack Result = c.getItem(3);
-            Boolean Check2 = Result.containsEnchantment(Enchantment.BINDING_CURSE);
+            boolean Check2 = Result.containsEnchantment(Enchantment.BINDING_CURSE);
             if (BaseItem.getType() == Material.CARVED_PUMPKIN && Check2) {
                 System.out.println("Blocked pumpkin enchantment.");
                 event.setResult(new ItemStack(Material.AIR));
