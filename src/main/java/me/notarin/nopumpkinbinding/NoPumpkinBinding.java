@@ -60,10 +60,10 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
     @SuppressWarnings("NullableProblems")
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (command.getName().equalsIgnoreCase("getthispumpkinoffme")) {
-            if (sender instanceof Player) {
-                Player p = (Player) sender;
-                World w = p.getWorld();
+        if (sender instanceof Player) {
+            Player p = (Player) sender;
+            World w = p.getWorld();
+            if (command.getName().equalsIgnoreCase("getthispumpkinoffme")) {
                 try {
                     ItemStack i = p.getInventory().getHelmet();
                     assert i != null;
