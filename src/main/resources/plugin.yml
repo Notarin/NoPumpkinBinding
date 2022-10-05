@@ -9,3 +9,6 @@ commands:
     description: Destroy the pumpkin on your head.
     aliases: [gtpom]
     permission: nopumpkinbinding.getthispumpkinoffme
+  nopumpkinbindingver:
+    description: Gets the version of Nopumpkinbinding.
+    aliases: [npbv]

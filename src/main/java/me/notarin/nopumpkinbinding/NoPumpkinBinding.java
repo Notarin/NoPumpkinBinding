@@ -89,6 +89,10 @@ public final class NoPumpkinBinding extends JavaPlugin implements Listener {
                     p.sendMessage(ChatColor.RED + "You're not wearing anything on your head!");
                 }
             }
+            if (command.getName().equalsIgnoreCase("nopumpkinbindingver")) {
+                p.sendMessage(ChatColor.RED + getDescription().getVersion());
+                p.sendMessage();
+            }
         }
         return true;
     }
